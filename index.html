@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/login.css"/>
+    <script type="module" defer src="js/firebase-sdk.js"></script>
+    <script type="module" defer src="js/login.js"></script>
+    <link rel="shortcut icon" href="/img/logo_OneDash.png" type="image/x-icon">
+    <title>Onedash</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="form-image">
+        <img src="img/login.svg" />
+      </div>
+      <div class="form">
+        <form action="">
+          <div class="form-header">
+            <div class="title">
+              <h1>Login</h1>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <div class="input-box">
+              <div><label for="">Login</label></div>
+              <input
+                type="text"
+                id="login"
+              />
+              <div class="error" id="email-invalid-error">Email é inválido</div>
+            </div>
+
+            <div class="input-box">
+              <div><label for="">Senha</label></div>
+              <input
+                type="password"
+                id="senha"
+              />
+            </div>
+          </div>
+
+          <div class="continue-button">
+            <button type="button" id="enviar">
+              Entrar
+            </button>
+          </div>
+          <br />
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
