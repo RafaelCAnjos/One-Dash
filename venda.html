@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realizar Venda</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./styles/dashboard.css">
+    <link rel="stylesheet" href="styles/gerenClientes.css">
+   
+      <script defer src="./js/bootstrap.min.js"></script>
+      <script defer src="./js/jquery.min.js"></script>
+      <script defer src="./js/main.js"></script>
+      <script defer src="./js/popper.js"></script>
+    
+</head>
+<body>
+    <div class="wrapper d-flex align-items-stretch">
+        <nav id="sidebar">
+            <div class="custom-menu">
+                <button type="button" id="sidebarCollapse" class="btn btn-primary">
+          <i class="fa fa-bars"></i>
+          <span class="sr-only">Toggle Menu</span>
+        </button>
+    </div>
+          <h1><a href="dashboard.html" class="logo">POSDash</a></h1>
+    <ul class="list-unstyled components mb-5">
+      <li>
+        <a href="dashboard.html"><span class="fa fa-user mr-3"></span> Dashboard</a>
+    </li>
+    <li>
+      <a href="gerenClientes.html"><span class="fa fa-sticky-note mr-3"></span>Cadastrar Cliente</a>
+    </li>
+    <li>
+      <a href="listVenda.html"><span class="fa fa-sticky-note mr-3"></span>Cadastrar usuário</a>
+    </li>
+    <li>
+      <a href="gerenProduto.html"><span class="fa fa-sticky-note mr-3"></span>Cadastar Produtos</a>
+    </li>
+    <li>
+      <a href="venda.html"><span class="fa fa-sticky-note mr-3"></span>Realizar vendas</a>
+    </li>
+    <li>
+      <a href="listVenda.html"><span class="fa fa-sticky-note mr-3"></span>Listar vendas</a>
+    </li>
+    <li>
+        <a href="login.html"><span class="fa fa-sticky-note mr-3"></span>Sair</a>
+      </li>
+    </ul>
+</nav>
+
+<div id="content" class="p-4 p-md-5 pt-5">
+    <div class="col-lg-6">
+        <h1>Realizar Venda</h1>
+        <form method="POST" action="/venda.php">
+            <div class="form-group">
+                <label for="cliente_id">Cliente:</label>
+                <select class="form-control" id="cliente_id" name="cliente_id" required>
+
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="produto_id">Produto:</label>
+                <select class="form-control" id="produto_id" name="produto_id" required>
+
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="quantidade">Quantidade:</label>
+                <input type="number" class="form-control" id="quantidade" name="quantidade" min="1" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Realizar Venda</button>
+        </form>
+    </div>
+</div>
+
+
+
+<script>
+var clienteSelect = document.getElementById('cliente_id');
+var produtoSelect = document.getElementById('produto_id');
+
+function carregarClientes() {
+    fetch('https://teste-dfb53-default-rtdb.firebaseio.com/clientes.json')
+    .then(response => response.json())
+    .then(data => {
+        for (var key in data) {
+            var option = document.createElement('option');
+            option.value = key;
+            option.textContent = data[key].nome + ' ' + data[key].sobrenome;
+            clienteSelect.appendChild(option);
+        }
+    });
+}
+
+function carregarProdutos() {
+    fetch('https://teste-dfb53-default-rtdb.firebaseio.com/produtos.json')
+    .then(response => response.json())
+    .then(data => {
+        for (var key in data) {
+            var option = document.createElement('option');
+            option.value = key;
+            option.textContent = data[key].nome;
+            produtoSelect.appendChild(option);
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    carregarClientes();
+    carregarProdutos();
+});
+</script>
+
+</body>
+</html>
